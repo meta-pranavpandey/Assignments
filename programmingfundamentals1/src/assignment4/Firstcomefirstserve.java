@@ -1,70 +1,55 @@
 package assignment4;
-import java.util.Scanner;
-public class Firstcomefirstserve
 
-
-
-{
-	/**Assumption: we ae assuming that the arrival time given by the user is in ascending order.
-	 * The method takes arrival time and job size as input and gives the wait time for each job
-	 * as output*/
-	 //function to simulate First Come First Serve(FCFS).
-	public int [][]fcfs(int arrivalTime[], int jobSize[]) {
-	int output[][]=new int[arrivalTime.length][5];
-	/*
-	* output[][0] stores - Job detail
-	* output[][1] stores - Job Arrival Time detail
-	* output[][2] stores - Job Waiting Time detail
-	* output[][3] stores - Job Starts At detail
-	* output[][4] stores - Job Finish At detail
-	*/
-	int l=1, totalJobSize;
-	output[0][2]=0; //Waiting Time of first job should be 0.
-	totalJobSize=jobSize[0]; //Total job size is first initialiased with job size of first job.
-	output[0][4]=jobSize[0];
-	output[0][3]=arrivalTime[0];
-	for (int i = 0; i < arrivalTime.length; i++) {
-	output[i][0]=l++; //to initialise the Job column in output array.
-	output[i][1]=arrivalTime[i]; //to initialize Job Arrival Time column in output array.
-	}
-	for (int i = 1; i < arrivalTime.length; i++) {
-	output[i][2]=totalJobSize-arrivalTime[i]+1;
-	totalJobSize+=jobSize[i];
-	output[i][3]=output[i-1][4]+1;
-
-	//if there is time gap between finishing of last job and arrival of present job, 
-	//i.e. waiting time negative
-	if (output[i][2]<0) {
-	output[i][2]=0; //waiting time should be 0.
-	output[i][3]=arrivalTime[i];
-	}
-	output[i][4]=output[i][3]+jobSize[i]-1;
+public class Firstcomefirstserve {
+	
+	int [][]firstComeFirstServe( int at [], int et[] ){
+		
+		int n,i,j;
+		int[][] 	result = new int[et.length][3];
+		
+		n=et.length;
+		
+		/*Sorting the jobs by arrival Times*/
+		for ( i = 0; i <= n; i++) {
+			for ( j = i + 1; j < n; j++)
+			{
+				if (at[i] > at[j]) {
+					
+               /*Swap in arrival times*/
+					int tempA = at[i];
+					at[i] = at[j];
+					at[j] = tempA;
+					
+               /*swap in execution times */
+					int tempB = et[i];
+					et[i] = et[j];
+					et[j] = tempB;
+				}
+			}
+		}
+		
+		result[0][0]=0;
+		result[0][1]=1;
+		result[0][2]=et[0];
+		
+		for ( i = 1; i < n; i++) {
+			if(at[i]<result[i-1][2])
+			{
+				result[i][0]=result[i-1][2]-at[i];
+				result[i][0]++;
+				result[i][1]=result[i][0]+at[i];
+				result[i][2]=result[i-1][2]+et[i];
+			}
+			else
+			{
+				result[i][0]=0;
+				result[i][1]=result[i][0]+at[i];
+				result[i][2]=at[i]+et[i];
+				result[i][2]--;
+			}
+		}
+		
+		return result;
 	}
 	
-	return output;
-	}	
-	public static void main(String[] args) {
-	// TODO Auto-generated method stub
-
-	Scanner scanner=new Scanner(System.in);
-	int job; //for storing no. of jobs.
-	System.out.print("Enter the no. of Jobs  :\t");
-	job=scanner.nextInt();
-	int[] arrivalTime=new int[job];
-	//to input arrival time of the jobs.
-	for (int i = 0; i < job; i++) {
-	System.out.print("Enter the Arrival Time of Job "+(i+1)+"  :\t");
-	arrivalTime[i]=scanner.nextInt();
 	}
-
-	int[] jobSize=new int[job];
-	//to input jobs sizes of respective jobs.
-	for (int i = 0; i < job; i++) {
-	System.out.print("Enter the Job Size of Job "+(i+1)+"  :\t");
-	jobSize[i]=scanner.nextInt();
-	}
-
-	int output[][]=new int[job][5]; //to hold the output table of FCFS.
-	output=new Firstcomefirstserve().fcfs(arrivalTime, jobSize);
-	}
-}
