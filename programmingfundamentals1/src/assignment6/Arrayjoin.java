@@ -9,11 +9,40 @@ public class Arrayjoin
 	int[] join(int a[], int asize, int b[], int bsize, int c[])
 	{
 		
-		
-		
-		
-		return int a[];
-	}
+		    int i = 0;
+		    int j = 0;
+		    int k = 0;
+		    while (i < asize && j < bsize)
+		    {
+		        if (a[i] < b[j])
+		        {
+		            c[k] = a[i];
+		            i++;
+		        }
+		        else
+		        {
+		            c[k] = b[j];
+		            j++;
+		        }
+		        k++;
+		    }
+
+		    while (i < asize)
+		    {
+		        c[k] = a[i];
+		        i++;
+		        k++;
+		    }
+
+		    while (j < bsize)
+		    {
+		        c[k] = b[j];
+		        j++;
+		        k++;
+		    }
+
+		    return c;
+		}
 	
 	
 }
