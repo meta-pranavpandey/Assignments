@@ -1,50 +1,56 @@
 package assignment3;
 
-public class Longestsequence {
-	
-	 public int[] lis(int[] X)
-	    {        
-	        int n = X.length - 1;
-	        int[] M = new int[n + 1];  
-	        int[] P = new int[n + 1]; 
-	        int L = 0;
-	 
-	        for (int i = 1; i < n + 1; i++)
-	        {
-	            int j = 0;
-	 
-	            for (int pos = L ; pos >= 1; pos--)
-	            {
-	                if (X[M[pos]] < X[i])
-	                {
-	                    j = pos;
-	                    break;
-	                }
-	            }            
-	            P[i] = M[j];
-	            if (j == L || X[i] < X[M[j + 1]])
-	            {
-	                M[j + 1] = i;
-	                L = Math.max(L,j + 1);
-	            }
-	        }
-	 
-	 
-	        int[] result = new int[L];
-	        int pos = M[L];
-	        for (int i = L - 1; i >= 0; i--)
-	        {
-	            result[i] = X[pos];
-	            pos = P[pos];
-	        }
-	        return result;             
-	    
-		 
+public class Longestsequence 
+	{
 
-	
-		 
-		 
-	   }
-	
-	 
-}
+	int[] longestSequence(int input[])	
+	{
+		int k,i,j,prevcount=0,l,count=0;
+		l=input.length;
+		int brr[]=new int[l];
+		for(i=0;i<l-1;i++)
+		{
+			if(input[i]<input[i+1])
+				count++;
+			else
+			{
+				if(prevcount<count)
+				{
+					for(j=i-count,k=0;j<=i;j++,k++)
+					{
+						brr[k]=input[j];
+					}
+					
+					prevcount=count;
+				}
+				count=0;
+			}
+		}
+		
+		if(prevcount<count)
+		{
+			for(j=i-count,k=0;j<=i;j++,k++)
+			{
+				brr[k]=input	[j];
+			}
+			
+			prevcount=count;
+		}
+		
+		count =0;
+		for(i=0;i<brr.length;i++)
+		{
+			if(brr[i]!=0)
+				count++;
+		}
+		
+		int result[]=new int[count];
+		
+		for(i=0;i<count;i++)
+		{
+			result[i]=brr[i];
+		}
+		
+		return result;	
+		}
+	}
