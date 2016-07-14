@@ -13,7 +13,7 @@ public void lstest()
 {
 	int[] arr={1,2,3,4,5,6,7,8,9};
 	int[] result={1,2,3,4,5,6,7,8,9};
-	assertArrayEquals(result,ls.lis(arr));
+	assertArrayEquals(result,ls.longestSequence(arr));
 	
 }
 

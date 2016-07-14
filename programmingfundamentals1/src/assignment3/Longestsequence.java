@@ -2,42 +2,42 @@ package assignment3;
 
 public class Longestsequence {
 	
-	 public int[] lis(int[] X)
+	 
+	
+	public int[] longestSequence(int[] input)
 	    {        
-	        int n = X.length - 1;
-	        int[] M = new int[n + 1];  
-	        int[] P = new int[n + 1]; 
-	        int L = 0;
-	 
-	        for (int i = 1; i < n + 1; i++)
+	        int size = input.length;
+	        int temp1[]=new int[size+1];
+	        int temp2[]=new int[size+1];
+	        int output[]=new int[size+1];
+	        int count=0;
+	        int sequence=0;
+	        temp1[0]=input[0];
+	        
+	        while (sequence<size)
 	        {
-	            int j = 0;
-	 
-	            for (int pos = L ; pos >= 1; pos--)
-	            {
-	                if (X[M[pos]] < X[i])
-	                {
-	                    j = pos;
-	                    break;
-	                }
-	            }            
-	            P[i] = M[j];
-	            if (j == L || X[i] < X[M[j + 1]])
-	            {
-	                M[j + 1] = i;
-	                L = Math.max(L,j + 1);
-	            }
+	        	for(int i=1;i<size;i++)
+	        	{
+	        		if(input[i]>input[i-1])
+	        		{
+	        			temp1[count]=input[i];
+	        			count++;
+	        		}
+	        		else if(count>sequence)
+	        		{
+	        			for(int k=0;k<=count;k++)
+	        			{
+	        				output[k]=temp1[k];
+	        			}
+	        			sequence=count;
+	        			break;
+	        		}
+	        	}
 	        }
+	    
 	 
-	 
-	        int[] result = new int[L];
-	        int pos = M[L];
-	        for (int i = L - 1; i >= 0; i--)
-	        {
-	            result[i] = X[pos];
-	            pos = P[pos];
-	        }
-	        return result;             
+	     
+	        return output;             
 	    
 		 
 
