@@ -3,8 +3,8 @@ package com.pf2.assignment;
 public class InvertedPatternMaker {
 
 	public static void main(String[] args) {
-		
-		InvertedPatternMaker ipm=new InvertedPatternMaker();
+
+		InvertedPatternMaker ipm = new InvertedPatternMaker();
 		ipm.printWholePyramid(5);
 	}
 
@@ -42,19 +42,30 @@ public class InvertedPatternMaker {
 		return numb;
 	}
 
-	/**This function takes the number till which pattern is required as input 
+	/**
+	 * This function takes the number till which pattern is required as input
 	 * and then print the whole pyramid pattern as required
 	 * 
-	 * @param n - stores number of rows(highest number needed)
+	 * @param int n - takes number of rows(highest number required)
+	 * @param String
+	 *            s1 - To store the spaces returned from the space function
+	 * @String String s2 - To store the numbers returned from the number
+	 *         function
+	 * @return String[] s3 - Returns the
 	 */
-	public void printWholePyramid(int n)
+	public String[] printWholePyramid(int n)
 
 	{
-		int row = 1;			//To store the current row number being processed
-		for (int j = 0; j <= n; j++) {
-			String line = space(row, n) + number(row, n);		//To join the spaces and numbers and form the required pattern
-			System.out.println(line);
-			row++;
+		InvertedPatternMaker obj = new InvertedPatternMaker();
+		String s1, s2;
+		int count = 0; // keep record of index no of pattern string
+		String s3[] = new String[n]; // length of string array 2n-1
+		for (int row = 1; row <= n; row++) // loop to increase the row number
+		{
+			s1 = obj.space(row, n); // call method space count
+			s2 = obj.number(row, n); // call method number sequence
+			s3[count++] = s1 + s2; // concatenate the space and number sequence
 		}
+		return s3; // return string of array containing pattern
 	}
 }
