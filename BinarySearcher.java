@@ -1,7 +1,8 @@
 package com.pf3.assignment;
 
 /**
- * This class is defined for performing Binary search on a given array using recursion
+ * This class is defined for performing Binary search on a given array using
+ * recursion
  * 
  * @author Pranav_Pandey
  *
@@ -43,15 +44,15 @@ public class BinarySearcher {
 			return elementPosition;
 		/*
 		 * If the searched element is less than the middle element
-		 * */
+		 */
 		else {
-			
+
 			if (element < array[(start + end) / 2]) {
 				elementPosition++;
 				return searchBinary(array, element, start, (start + end) / 2);
-			} 
-			
-			else								// if (element > array[(start + end / 2)])
+			}
+
+			else // if (element > array[(start + end / 2)])
 			{
 				elementPosition++;
 				return searchBinary(array, element, (start + end) / 2, end);

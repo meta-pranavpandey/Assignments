@@ -1,5 +1,12 @@
 package com.pf3.assignment;
 
+/**
+ * This class is for searching an array by using linear searching algorithm
+ * 
+ * @author Pranav_Pandey
+ *
+ */
+
 public class LinearSearcher {
 
 	public static void main(String[] args) {
@@ -12,19 +19,34 @@ public class LinearSearcher {
 
 	int index = 0;
 
-	public int searchLinear(int arr[], int element) {
+	/**
+	 * This method linearly searches for a given element in the given array
+	 * using recursion
+	 * 
+	 * @param inputArray
+	 *            -
+	 * @param elementSearched
+	 * @return int - returns the index position of the element being searched
+	 */
+	public int searchLinear(int inputArray[], int elementSearched) {
 
-		if (arr[index] == element) {
+		/*
+		 * If the element being searched is at the given index, return the index
+		 * position
+		 */
+		if (inputArray[index] == elementSearched) {
 			System.out.println(index);
 			return index;
 
 		}
-
-		else if (index >= arr.length - 1) {
+		/* If element is not found in the aray return -1 */
+		else if (index >= inputArray.length - 1) {
 			return -1;
-		} else {
+		}
+		/* Recursive call to search for the given element further */
+		else {
 			index++;
-			return searchLinear(arr, element);
+			return searchLinear(inputArray, elementSearched);
 		}
 	}
 }

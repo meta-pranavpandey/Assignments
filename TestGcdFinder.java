@@ -4,18 +4,30 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class TestQuickSorter {
+/**
+ * This is a junit test class for GcdFinder class for finding gcd of two numbers
+ * 
+ * @author Pranav_Pandey
+ */
 
-	@Before
-	public void setUp() throws Exception {
+public class TestGcdFinder {
+
+	GcdFinder gcd = new GcdFinder();
+
+	public void setUp() {
 	}
 
+	/**
+	 * This method tests the findingGcd method of the GcdFinder class with the
+	 * given inputs
+	 */
 	@Test
 	public void testSort() {
-		QuickSort sortElement = new QuickSort();
-		int[] unsorted = { 6, 1, 9, 15, 10 };
-		int[] sorted = { 1, 6, 9, 10, 15 };
-		assertArrayEquals(sorted, sortElement.quickSort(unsorted));
+
+		assertEquals(1, gcd.findingGcd(2, 1));
+		assertEquals(6, gcd.findingGcd(12, 18));
+		assertEquals(3, gcd.findingGcd(100, 3));
+
 	}
 
 }
