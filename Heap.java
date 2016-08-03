@@ -67,7 +67,7 @@ class BinaryHeap
     }
  
    /**
-    * This function is to insert element in the heap
+    * 
     * @param x
     */
     public void insert(int x)
