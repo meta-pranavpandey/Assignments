@@ -10,68 +10,75 @@ package assignment1;
  */
 public class BTNode<E> {
 
-    private E data; // To store the data
-    private BTNode<E> left; // To store the reference to the left node
-    private BTNode<E> right; // To store the reference to the right node
+	private E data; // To store the data
+	private BTNode<E> left; // To store the reference to the left node
+	private BTNode<E> right; // To store the reference to the right node
+	
+	/**
+	 * Non-parameterized empty constructor
+	 */
+	public BTNode() {
 
-    /**
-     * parameterized constructor for initializing the values of the class
-     * variables
-     * 
-     * @param data
-     */
-    public BTNode(E data) {
-	this.data = data;
-	setLeft(null);
-	setRight(null);
-    }
+	}
 
-    /**
-     * 
-     * @param data
-     *            The data to set
-     */
-    public void setData(E data) {
-	this.data = data;
-    }
+	/**
+	 * parameterized constructor for initializing the values of the class
+	 * variables
+	 * 
+	 * @param data
+	 */
+	public BTNode(E data) {
+		this.data = data;
+		setLeft(null);
+		setRight(null);
+	}
 
-    /**
-     * 
-     * @return the data of the node
-     */
-    public Object getData() {
-	return data;
-    }
+	/**
+	 * 
+	 * @param data
+	 *            The data to set
+	 */
+	public void setData(E data) {
+		this.data = data;
+	}
 
-    /**
-     * @return the left node
-     */
-    public BTNode<E> getLeft() {
-	return left;
-    }
+	/**
+	 * 
+	 * @return the data of the node
+	 */
+	public Object getData() {
+		return data;
+	}
 
-    /**
-     * 
-     * @param left
-     *            - the left node to set
-     */
-    public void setLeft(BTNode<E> left) {
-	this.left = left;
-    }
+	/**
+	 * @return the left node
+	 */
+	public BTNode<E> getLeft() {
+		return left;
+	}
 
-    /**
-     * @return the right node
-     */
-    public BTNode<E> getRight() {
-	return right;
-    }
+	/**
+	 * 
+	 * @param left
+	 *            - the left node to set
+	 */
+	public void setLeft(BTNode<E> left) {
+		this.left = left;
+	}
 
-    /**
-     * @param right
-     *            - the right node to set
-     */
-    public void setRight(BTNode<E> right) {
-	this.right = right;
-    }
+	/**
+	 * @return the right node
+	 */
+	public BTNode<E> getRight() {
+		return right;
+	}
+
+	/**
+	 * @param right
+	 *            - the right node to set
+	 */
+	public void setRight(BTNode<E> right) {
+		this.right = right;
+	}
 
 }
