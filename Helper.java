@@ -1,73 +1,105 @@
 package assignment1;
 
-import java.io.IOException;
 import java.util.Scanner;
+/**
+ * This class is to control the whole process to be done 
+ * @author Pranav_Pandey
+ *
+ */
 public class Helper {
-
-	private int jobPriority;
-	private String jobDesc;
-
+	/**
+	 * Main method to control the flow of execution
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
-		Helper hlp = new Helper();
-		hlp.getInput();
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Priority Queue Test\n");
+		Heap<String> heap = new Heap<String>();
+		Helper scheduling = new Helper();
+
+		// Insert data in heap
+		while (true) {
+			int userChoice = 0;
+			heap.insert(new HeapNode<String>(scheduling
+					.getIntfromUser("Priority"), scheduling
+					.getStringfromUser("Name")));
+			System.out.println("\nPress 1 for continue, 2 for exit");
+			while (true) {
+				userChoice = scheduling.getIntfromUser("Choice ");
+				if (userChoice == 1 || userChoice == 2) {
+					break;
+				} else {
+					System.out.println("try again, Enter 1 or 2");
+				}
+			}
+			if (userChoice == 2) {
+				break;
+			}
+		}
+		scan.close();
+
+		// Show all data according to priority
+		while (heap.getSize() != 0) {
+			System.out.println(heap.extractMax());
+		}
+
 	}
 
 	/**
-	 * @return the jobPriority
+	 * Method to read string data from standard input
+	 * 
+	 * @param Name
+	 *            of variable to print
+	 * @return String value input by user
 	 */
-	public int getJobPriority() {
-		return jobPriority;
+	public String getStringfromUser(String Name) {
+		@SuppressWarnings("resource")
+		Scanner s = new Scanner(System.in);
+		String string = "";
+		while (true) {
+			try {
+				System.out.println("Enter " + Name);
+				string = s.next();
+				if (string.length() > 0) {
+					break;
+				} else {
+					System.out.println("Invalid, Try Again");
+				}
+			} catch (Exception e) {
+				System.out.println("Invalid, Try again");
+				s.next();
+			}
+
+		}
+		return string;
 	}
 
 	/**
-	 * @param jobPriority
-	 *            the jobPriority to set
+	 * Method to read integer data from standard input
+	 * 
+	 * @param Name
+	 *            of variable to print
+	 * @return int value of integer
 	 */
-	public void setJobPriority(int jobPriority) {
-		this.jobPriority = jobPriority;
-	}
-
-	/**
-	 * @return the department
-	 */
-	public String getJobDesc() {
-		return jobDesc;
-	}
-
-	/**
-	 * @param department
-	 *            the department to set
-	 */
-	public void setJobDesc(String jobType) {
-		this.jobDesc = jobType;
-	}
-
-	public void getInput() {
-		int type = 0;
-		try{
-		System.out.println("Select The job Type: \n");
-		System.out
-				.println("1-Undergraduates \n 2-Graduate Students \n 3-Professor \n 4-Department Chair");
-		Scanner sc=new Scanner(System.in);
-		type=sc.nextInt();
-		if(type>4)
-		{
-			throw new IOException("Invalid input");
+	public int getIntfromUser(String Name) {
+		@SuppressWarnings("resource")
+		Scanner s = new Scanner(System.in);
+		int number = 0;
+		while (true) {
+			try {
+				System.out.println("Enter " + Name);
+				number = s.nextInt();
+				if (number > 0) {
+					break;
+				} else {
+					System.out.println("Invalid, Try Again");
+				}
+			} catch (Exception e) {
+				System.out.println("Invalid, Try again");
+				s.next();
+			}
 		}
-		else
-		{
-			System.out.println("Enter Job Description");
-			jobDesc=sc.nextLine();
-		}
-		}
-		catch(IOException e)
-		{
-			System.out.println("Please check the entered Type:");
-			getInput();
-		}
-		
-		{
-			
-		}
+		return number;
 	}
 }
